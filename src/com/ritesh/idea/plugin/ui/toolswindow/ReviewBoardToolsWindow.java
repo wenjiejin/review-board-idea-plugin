@@ -19,10 +19,9 @@ package com.ritesh.idea.plugin.ui.toolswindow;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;
+import com.intellij.ui.content.impl.ContentImpl;
 import com.ritesh.idea.plugin.ui.toolswindow.reviewpanel.ReviewsPanel;
 import org.jetbrains.annotations.NotNull;
-
-import java.awt.*;
 
 /**
  * @author Ritesh
@@ -31,7 +30,6 @@ public class ReviewBoardToolsWindow implements ToolWindowFactory {
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         ReviewsPanel panel = new ReviewsPanel(project);
-        Component component = toolWindow.getComponent();
-        component.getParent().add(panel);
+        toolWindow.getContentManager().addContent(new ContentImpl(panel, "" , true));
     }
 }
